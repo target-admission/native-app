@@ -1,0 +1,33 @@
+{
+	"expo": {
+		"scheme": "acme",
+		"web": {
+			"bundler": "metro",
+			"favicon": "./assets/icons/favicon.png"
+		},
+		"name": "Target Admission",
+		"slug": "target admission",
+		"icon": "./assets/icons/icon.png",
+		"experiments": {
+			"tsconfigPaths": true
+		},
+
+		"extra": {
+			"eas": {
+				"projectId": "283c1395-7f73-4933-b47a-c822cb5bdd1e"
+			}
+		},
+		"android": {
+			"package": "com.tam11a.targetadmission",
+			"icon": "./assets/icons/icon.png",
+			"adaptiveIcon": {
+				"foregroundImage": "./assets/icons/adaptive-icon.png"
+			}
+		},
+		"splash": {
+			"image": "./assets/icons/splash.png",
+			"resizeMode": "cover",
+			"backgroundColor": "#fff"
+		}
+	}
+}
