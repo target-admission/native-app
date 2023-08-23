@@ -8,6 +8,14 @@ module.exports = {
 	theme: {
 		extend: {
 			fontFamily: {},
+			colors: {
+				primary: {
+					DEFAULT: "#ED2024",
+				},
+				secondary: {
+					DEFAULT: "#7359F2",
+				},
+			},
 		},
 	},
 	plugins: [],

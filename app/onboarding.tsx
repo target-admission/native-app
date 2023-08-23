@@ -1,17 +1,21 @@
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import Onboarding from "react-native-onboarding-swiper";
+import { useRouter } from "expo-router";
 
 export default function Page() {
+	const router = useRouter();
+
 	return (
 		<Onboarding
 			transitionAnimationDuration={300}
 			bottomBarHighlight={false}
+			onDone={() => router.push("/home")}
 			SkipButtonComponent={({ ...props }) => (
 				<TouchableOpacity
 					{...props}
 					className="px-6"
 				>
-					<Text className="font-bold text-base">Skip</Text>
+					<Text className="font-bold text-base text-gray-500">Skip</Text>
 				</TouchableOpacity>
 			)}
 			NextButtonComponent={({ ...props }) => (
@@ -19,7 +23,7 @@ export default function Page() {
 					{...props}
 					className="px-6"
 				>
-					<Text className="font-bold text-base">Next</Text>
+					<Text className="font-bold text-base text-white">Next</Text>
 				</TouchableOpacity>
 			)}
 			DoneButtonComponent={({ ...props }) => (
@@ -27,12 +31,12 @@ export default function Page() {
 					{...props}
 					className="px-6"
 				>
-					<Text className="font-bold text-base">Done</Text>
+					<Text className="font-bold text-base text-primary">Done</Text>
 				</TouchableOpacity>
 			)}
 			pages={[
 				{
-					backgroundColor: "#fff",
+					backgroundColor: "#000",
 					image: (
 						<View
 							children={
@@ -46,14 +50,14 @@ export default function Page() {
 					),
 					title: (
 						<View>
-							<Text className="text-2xl font-black text-[#182D4D]">
-								Question <Text className="text-[#49A247]">Bank</Text>
+							<Text className="text-2xl font-black text-white">
+								Question <Text className="text-primary">Bank</Text>
 							</Text>
 						</View>
 					),
 					subtitle: (
 						<View>
-							<Text className="text-center max-w-[300px] mt-6 text-xs font-medium text-[#6C7D87]">
+							<Text className="text-center max-w-[300px] mt-6 text-sm font-medium text-gray-500">
 								Access a vast collection of previous years' university admission
 								test questions and expert-curated new suggested question banks.
 								Boost your preparation by practicing with real exam-like
@@ -63,7 +67,7 @@ export default function Page() {
 					),
 				},
 				{
-					backgroundColor: "#fff",
+					backgroundColor: "#000",
 					image: (
 						<View
 							children={
@@ -77,14 +81,14 @@ export default function Page() {
 					),
 					title: (
 						<View>
-							<Text className="text-2xl font-black text-[#182D4D]">
-								In-App <Text className="text-[#49A247]">Exam</Text>
+							<Text className="text-2xl font-black text-white">
+								In-App <Text className="text-primary">Exam</Text>
 							</Text>
 						</View>
 					),
 					subtitle: (
 						<View>
-							<Text className="text-center max-w-[300px] mt-6 text-xs font-medium text-[#6C7D87]">
+							<Text className="text-center max-w-[300px] mt-6 text-sm font-medium text-gray-500">
 								Test your knowledge and track your progress with our interactive
 								in-app exams. Simulate the actual admission test environment,
 								receive instant feedback, and identify areas for improvement to
@@ -94,7 +98,7 @@ export default function Page() {
 					),
 				},
 				{
-					backgroundColor: "#fff",
+					backgroundColor: "#000",
 					image: (
 						<View
 							children={
@@ -108,8 +112,8 @@ export default function Page() {
 					),
 					title: (
 						<View>
-							<Text className="text-2xl font-black text-[#182D4D]">
-								Online <Text className="text-[#49A247]">Courses</Text>
+							<Text className="text-2xl font-black text-white">
+								Online <Text className="text-primary">Courses</Text>
 							</Text>
 						</View>
 					),
