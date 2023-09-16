@@ -1,6 +1,7 @@
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import Onboarding from "react-native-onboarding-swiper";
 import { useRouter } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Page() {
 	const router = useRouter();
@@ -9,7 +10,10 @@ export default function Page() {
 		<Onboarding
 			transitionAnimationDuration={300}
 			bottomBarHighlight={false}
-			onDone={() => router.push("/home")}
+			onDone={async () => {
+				await AsyncStorage.setItem("@app:openedBefore", "true");
+				router.push("/home");
+			}}
 			SkipButtonComponent={({ ...props }) => (
 				<TouchableOpacity
 					{...props}

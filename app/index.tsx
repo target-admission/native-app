@@ -17,7 +17,6 @@ export default function Page() {
 			if (openedBefore) {
 				navigation.replace("/home");
 			} else {
-				await AsyncStorage.setItem("@app:openedBefore", "true");
 				navigation.replace("/onboarding");
 			}
 		} catch (error) {
@@ -28,7 +27,7 @@ export default function Page() {
 	return (
 		<SafeAreaView className="flex-col items-center justify-evenly h-full bg-[#000000]">
 			<View>
-				<Text className="text-white">Splash</Text>
+				<Text className="text-black">...</Text>
 			</View>
 		</SafeAreaView>
 	);
