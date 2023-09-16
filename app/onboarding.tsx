@@ -10,6 +10,10 @@ export default function Page() {
 		<Onboarding
 			transitionAnimationDuration={300}
 			bottomBarHighlight={false}
+			onSkip={async () => {
+				await AsyncStorage.setItem("@app:openedBefore", "true");
+				router.push("/home");
+			}}
 			onDone={async () => {
 				await AsyncStorage.setItem("@app:openedBefore", "true");
 				router.push("/home");
