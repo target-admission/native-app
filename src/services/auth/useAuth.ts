@@ -2,10 +2,8 @@ import { useEffect, useState } from "react";
 import { authService } from "./auth.service";
 import { useGetValidation } from "../../queries/auth";
 
-export const useAuth = async () => {
-	const [token, setToken] = useState<string | null>(
-		await authService.getToken()
-	);
+export const useAuth = () => {
+	const [token, setToken] = useState<string | null>(null);
 	const [user, setUser] = useState({
 		id: 0,
 		first_name: "",
@@ -25,6 +23,14 @@ export const useAuth = async () => {
 		deleted_at: "",
 	});
 
+	console.log(token);
+
+	useEffect(() => {
+		authService.getToken().then((v) => {
+			setToken(v || "");
+		});
+	}, []);
+
 	useEffect(() => {
 		const unsubscribe = authService.listen((v) => {
 			setToken(v);
@@ -41,6 +47,8 @@ export const useAuth = async () => {
 		isError: isValidationError,
 		error,
 	} = useGetValidation(token);
+
+	console.log(validationData, isValidationError, isValidationLoading);
 
 	useEffect(() => {
 		let status = error?.request?.status;
@@ -65,9 +73,10 @@ export const useAuth = async () => {
 	}, [validationData]);
 
 	return {
+		isLoading: token === null || isValidationLoading,
 		token,
 		user,
 		isValidationLoading,
-		isAuthenticated: !!token,
+		isAuthenticated: !!token && !!token?.length,
 	};
 };

@@ -8,7 +8,7 @@ import instance from "../../services";
 
 //Login Function
 const login = (data: ILogin) => {
-	return instance.post("/admin/signin", { ...data });
+	return instance.post("/auth/signin", { ...data });
 };
 
 export const useLogin = () => {
@@ -17,7 +17,7 @@ export const useLogin = () => {
 
 //Logout function with instance
 const logout = () => {
-	return instance.delete("/admin/signout");
+	return instance.delete("/auth/signout");
 };
 export const useLogout = () => {
 	return useMutation(logout);
@@ -26,12 +26,12 @@ export const useLogout = () => {
 // Validation function with instance
 const getValidateUser = () => {
 	// updateInstanceAuthorization();
-	return instance.get("/admin/validate");
+	return instance.get("/auth/validate");
 };
 
 export const useGetValidation = (token: string | null) => {
-	return useQuery(["/admin/validate", token], getValidateUser, {
-		enabled: !!token,
+	return useQuery(["/auth/validate", token], getValidateUser, {
+		enabled: !!token && !!token?.length,
 		retry: 1,
 		onError: async (error: { request: { status: number } }) => {
 			return error.request.status;
@@ -42,7 +42,7 @@ export const useGetValidation = (token: string | null) => {
 
 // User information update
 const updateUserInfo = ({ data }: { data: IUpdateUser | any }) => {
-	return instance.patch(`/admin/update`, {
+	return instance.patch(`/auth/update`, {
 		...data,
 	});
 };
@@ -51,7 +51,7 @@ export const useUpdateUserInfo = () => {
 	const query = useQueryClient();
 	return useMutation([], updateUserInfo, {
 		onSuccess: () => {
-			query.invalidateQueries(["/admin/validate"]);
+			query.invalidateQueries(["/auth/validate"]);
 		},
 	});
 };
