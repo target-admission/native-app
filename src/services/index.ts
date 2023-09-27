@@ -1,11 +1,15 @@
 // Axios
 // import config from "@/config";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 // import { authService } from "./auth";
 // import crypto from "@/utilities/crypto";
 
+// console.log(process.env, process.env.EXPO_PUBLIC_API_URL, "boom");
+
 // Configuring root url
-export const rootURL: string | undefined = process.env.EXPO_PUBLIC_API_URL;
+export const rootURL: string | undefined =
+	process.env.EXPO_PUBLIC_API_URL || "https://api.target-admission.tam11a.dev/";
 
 // configuring axios on initial load with the authorization token from localstorage it exists
 export const instance = axios.create({
@@ -27,5 +31,14 @@ instance.interceptors.request.use((configuration) => {
 
 	return configuration;
 });
+
+// update authorization token from instance if exists or remove if not exists
+export const updateInstanceAuthorization = () => {
+	instance.interceptors.request.use(async (req: any) => {
+		const token = await AsyncStorage.getItem("@app:jwt");
+		req.headers["Authorization"] = token ? `Bearer ${token}` : "";
+		return req;
+	});
+};
 
 export default instance;

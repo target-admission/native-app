@@ -4,7 +4,7 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { ILogin, IUpdateUser } from "./types";
-import instance from "../../services";
+import instance, { updateInstanceAuthorization } from "../../services";
 
 //Login Function
 const login = (data: ILogin) => {
@@ -25,13 +25,13 @@ export const useLogout = () => {
 
 // Validation function with instance
 const getValidateUser = () => {
-	// updateInstanceAuthorization();
+	updateInstanceAuthorization();
 	return instance.get("/auth/validate");
 };
 
 export const useGetValidation = (token: string | null) => {
 	return useQuery(["/auth/validate", token], getValidateUser, {
-		enabled: !!token && !!token?.length,
+		enabled: token !== null && token?.length > 0,
 		retry: 1,
 		onError: async (error: { request: { status: number } }) => {
 			return error.request.status;

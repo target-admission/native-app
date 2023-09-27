@@ -23,8 +23,6 @@ export const useAuth = () => {
 		deleted_at: "",
 	});
 
-	console.log(token);
-
 	useEffect(() => {
 		authService.getToken().then((v) => {
 			setToken(v || "");
@@ -44,14 +42,14 @@ export const useAuth = () => {
 	const {
 		data: validationData,
 		isLoading: isValidationLoading,
+		isInitialLoading: isValidationInitialLoading,
 		isError: isValidationError,
 		error,
 	} = useGetValidation(token);
 
-	console.log(validationData, isValidationError, isValidationLoading);
-
 	useEffect(() => {
 		let status = error?.request?.status;
+
 		if (!isValidationError || status !== 401) return;
 
 		// message.open({
@@ -73,7 +71,7 @@ export const useAuth = () => {
 	}, [validationData]);
 
 	return {
-		isLoading: token === null || isValidationLoading,
+		isLoading: token === null || isValidationInitialLoading,
 		token,
 		user,
 		isValidationLoading,
