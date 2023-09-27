@@ -15,7 +15,7 @@ export default function Page() {
 		try {
 			const openedBefore = await AsyncStorage.getItem("@app:openedBefore");
 			if (openedBefore) {
-				navigation.replace("/home");
+				navigation.replace("/private/home");
 			} else {
 				navigation.replace("/onboarding");
 			}
