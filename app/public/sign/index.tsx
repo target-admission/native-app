@@ -1,8 +1,11 @@
 import { Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Input from "../../../src/components/Input";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useRouter } from "expo-router";
 
 export default function Page() {
+	const router = useRouter();
 	return (
 		<SafeAreaView className="bg-black h-full flex flex-col">
 			<View className="flex-1 flex flex-col items-start justify-end p-8 gap-2">
@@ -31,6 +34,10 @@ export default function Page() {
 				<TouchableOpacity
 					className="relative rounded-md w-full"
 					activeOpacity={0.85}
+					onPressOut={async () => {
+						await AsyncStorage.removeItem("@app:openedBefore");
+						router.push("/onboarding");
+					}}
 				>
 					<Text className="bg-primary rounded-md text-xl text-center font-fredoka-semibold tracking-widest  px-6 py-4">
 						SIGN IN

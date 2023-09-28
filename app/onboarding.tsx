@@ -12,18 +12,20 @@ export default function Page() {
 			bottomBarHighlight={false}
 			onSkip={async () => {
 				await AsyncStorage.setItem("@app:openedBefore", "true");
-				router.push("/home");
+				router.push("/private/home");
 			}}
 			onDone={async () => {
 				await AsyncStorage.setItem("@app:openedBefore", "true");
-				router.push("/home");
+				router.push("/private/home");
 			}}
 			SkipButtonComponent={({ ...props }) => (
 				<TouchableOpacity
 					{...props}
 					className="px-6"
 				>
-					<Text className="font-bold text-base text-gray-500">Skip</Text>
+					<Text className="font-fredoka-medium text-base text-gray-500">
+						Skip
+					</Text>
 				</TouchableOpacity>
 			)}
 			NextButtonComponent={({ ...props }) => (
@@ -31,13 +33,13 @@ export default function Page() {
 					{...props}
 					className="px-6"
 				>
-					<Text className="font-bold text-base text-white">Next</Text>
+					<Text className="font-fredoka-medium text-base text-white">Next</Text>
 				</TouchableOpacity>
 			)}
 			DoneButtonComponent={({ ...props }) => (
 				<TouchableOpacity
 					{...props}
-					className="px-6"
+					className="font-fredoka-medium px-6"
 				>
 					<Text className="font-bold text-base text-primary">Done</Text>
 				</TouchableOpacity>
@@ -58,14 +60,14 @@ export default function Page() {
 					),
 					title: (
 						<View>
-							<Text className="text-2xl font-black text-white">
+							<Text className="text-3xl text-white font-fredoka-medium">
 								Question <Text className="text-primary">Bank</Text>
 							</Text>
 						</View>
 					),
 					subtitle: (
 						<View>
-							<Text className="text-center max-w-[300px] mt-6 text-sm font-medium text-gray-500">
+							<Text className="text-center max-w-[300px] mt-6 text-base font-fredoka text-gray-500">
 								Access a vast collection of previous years' university admission
 								test questions and expert-curated new suggested question banks.
 								Boost your preparation by practicing with real exam-like
@@ -89,14 +91,14 @@ export default function Page() {
 					),
 					title: (
 						<View>
-							<Text className="text-2xl font-black text-white">
+							<Text className="text-3xl text-white font-fredoka-medium">
 								In-App <Text className="text-primary">Exam</Text>
 							</Text>
 						</View>
 					),
 					subtitle: (
 						<View>
-							<Text className="text-center max-w-[300px] mt-6 text-sm font-medium text-gray-500">
+							<Text className="text-center max-w-[300px] mt-6 text-base font-fredoka text-gray-500">
 								Test your knowledge and track your progress with our interactive
 								in-app exams. Simulate the actual admission test environment,
 								receive instant feedback, and identify areas for improvement to
@@ -120,14 +122,14 @@ export default function Page() {
 					),
 					title: (
 						<View>
-							<Text className="text-2xl font-black text-white">
+							<Text className="text-3xl text-white font-fredoka-medium">
 								Online <Text className="text-primary">Courses</Text>
 							</Text>
 						</View>
 					),
 					subtitle: (
 						<View>
-							<Text className="text-center max-w-[300px] mt-6 text-xs font-medium text-[#6C7D87]">
+							<Text className="text-center max-w-[300px] mt-6 text-base font-fredoka text-gray-500">
 								Enroll in specialized academic courses designed by experienced
 								educators to tackle challenging topics of the university
 								admission test. Gain in-depth knowledge, receive personalized
