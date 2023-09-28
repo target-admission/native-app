@@ -1,27 +1,36 @@
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import {
+	ActivityIndicator,
+	Image,
+	Text,
+	TouchableOpacity,
+	View,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Input from "../../../src/components/Input";
-import { useRouter } from "expo-router";
+// import { useRouter } from "expo-router";
 import { Controller, useForm } from "react-hook-form";
 import { useLogin } from "../../../src/queries/auth";
 import handleResponse from "../../../src/utilites/handleResponse";
+// import AsyncStorage from "@react-native-async-storage/async-storage";
+import { authService } from "../../../src/services/auth";
 
 export default function Page() {
-	const router = useRouter();
-	const {
-		register,
-		setValue,
-		handleSubmit,
-		control,
-		reset,
-		formState: { errors },
-	} = useForm();
+	// const router = useRouter();
+	const { handleSubmit, control, reset } = useForm();
 
-	const { mutateAsync, isLoading } = useLogin();
+	const { mutateAsync, isLoading, error } = useLogin();
 
 	const onSubmit = async (data: any) => {
 		const res = await handleResponse(() => mutateAsync(data));
-		console.log(res);
+		if (res.status) {
+			authService.setToken(res.data.jwt);
+			// router.replace("/private/home");
+		} else {
+			// Snackbar.show({
+			// 	text: res.message,
+			// 	// duration: Snackbar?.LENGTH_SHORT,
+			// });
+		}
 	};
 
 	return (
@@ -86,12 +95,13 @@ export default function Page() {
 					</Text>
 				</View>
 				<TouchableOpacity
+					disabled={isLoading}
 					className="relative rounded-md w-full"
 					activeOpacity={0.85}
 					onPressOut={handleSubmit(onSubmit)}
 				>
 					<Text className="bg-primary rounded-md text-xl text-center font-fredoka-semibold tracking-widest  px-6 py-4">
-						SIGN IN
+						{isLoading ? "SIGNING..." : "SIGN IN"}
 					</Text>
 				</TouchableOpacity>
 				<View className="w-full">

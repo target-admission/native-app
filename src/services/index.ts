@@ -33,12 +33,15 @@ instance.interceptors.request.use((configuration) => {
 });
 
 // update authorization token from instance if exists or remove if not exists
-export const updateInstanceAuthorization = () => {
-	instance.interceptors.request.use(async (req: any) => {
-		const token = await AsyncStorage.getItem("@app:jwt");
-		req.headers["Authorization"] = token ? `Bearer ${token}` : "";
-		return req;
-	});
+export const updateInstanceAuthorization = async () => {
+	await Promise.resolve(
+		instance.interceptors.request.use(async (req: any) => {
+			const token = await AsyncStorage.getItem("@app:jwt");
+			req.headers["Authorization"] = token ? `Bearer ${token}` : "";
+			console.log(req.headers);
+			return req;
+		})
+	);
 };
 
 export default instance;

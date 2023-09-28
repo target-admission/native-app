@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { authService } from "./auth.service";
 import { useGetValidation } from "../../queries/auth";
+import { updateInstanceAuthorization } from "..";
 
 export const useAuth = () => {
 	const [token, setToken] = useState<string | null>(null);
@@ -26,6 +27,7 @@ export const useAuth = () => {
 	useEffect(() => {
 		authService.getToken().then((v) => {
 			setToken(v || "");
+			updateInstanceAuthorization();
 		});
 	}, []);
 
@@ -57,6 +59,7 @@ export const useAuth = () => {
 		// 	content: "Signing out..",
 		// 	duration: 0,
 		// });
+		console.log(status);
 
 		setTimeout(() => {
 			authService.removeToken();

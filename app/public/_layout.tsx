@@ -13,7 +13,7 @@ function PublicLayout() {
 
 	const checkAuth = async () => {
 		if (!isAuthenticated) return;
-		router.replace("/private/sign");
+		router.replace("/private/home");
 	};
 
 	if (isLoading) return <Loading />;

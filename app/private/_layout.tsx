@@ -12,8 +12,8 @@ function PrivateLayout() {
 	}, [router]);
 
 	const logout = async () => {
-		if (isAuthenticated) return;
-		await authService.removeToken();
+		if (isLoading || isAuthenticated) return;
+		// await authService.removeToken();
 		router.replace("/public/sign");
 	};
 
