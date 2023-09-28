@@ -46,7 +46,7 @@ export default function Page() {
 			)}
 			pages={[
 				{
-					backgroundColor: "#000",
+					backgroundColor: "#131417",
 					image: (
 						<View
 							children={
@@ -77,7 +77,7 @@ export default function Page() {
 					),
 				},
 				{
-					backgroundColor: "#000",
+					backgroundColor: "#131417",
 					image: (
 						<View
 							children={
@@ -108,7 +108,7 @@ export default function Page() {
 					),
 				},
 				{
-					backgroundColor: "#000",
+					backgroundColor: "#131417",
 					image: (
 						<View
 							children={

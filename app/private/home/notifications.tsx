@@ -5,7 +5,7 @@ export default function Page() {
 	return (
 		<SafeAreaView className="bg-background h-full">
 			<View>
-				<Text className="text-white">Home</Text>
+				<Text className="text-white">Notifications</Text>
 			</View>
 		</SafeAreaView>
 	);

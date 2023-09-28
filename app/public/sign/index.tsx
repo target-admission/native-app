@@ -13,9 +13,11 @@ import { useLogin } from "../../../src/queries/auth";
 import handleResponse from "../../../src/utilites/handleResponse";
 // import AsyncStorage from "@react-native-async-storage/async-storage";
 import { authService } from "../../../src/services/auth";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useRouter } from "expo-router";
 
 export default function Page() {
-	// const router = useRouter();
+	const router = useRouter();
 	const { handleSubmit, control, reset } = useForm();
 
 	const { mutateAsync, isLoading, error } = useLogin();
@@ -34,7 +36,7 @@ export default function Page() {
 	};
 
 	return (
-		<SafeAreaView className="bg-black h-full flex flex-col">
+		<SafeAreaView className="bg-background h-full flex flex-col">
 			<View className="flex-1 flex flex-col items-start justify-end p-8 gap-2">
 				<View className="w-full p-4">
 					<Image
@@ -100,14 +102,23 @@ export default function Page() {
 					activeOpacity={0.85}
 					onPressOut={handleSubmit(onSubmit)}
 				>
-					<Text className="bg-primary rounded-md text-xl text-center font-fredoka-semibold tracking-widest  px-6 py-4">
+					<Text className="bg-primary rounded-md text-xl text-center font-fredoka-semibold tracking-widest text-background px-6 py-4">
 						{isLoading ? "SIGNING..." : "SIGN IN"}
 					</Text>
 				</TouchableOpacity>
 				<View className="w-full">
-					<Text className="text-white w-full text-center my-8 font-fredoka text-base">
-						Create new account?
-					</Text>
+					<TouchableOpacity
+						className="relative rounded-md w-full"
+						activeOpacity={0.85}
+						onPressOut={async () => {
+							await AsyncStorage.removeItem("@app:openedBefore");
+							router.replace("/onboarding");
+						}}
+					>
+						<Text className="text-white w-full text-center my-8 font-fredoka text-base">
+							Create new account?
+						</Text>
+					</TouchableOpacity>
 				</View>
 			</View>
 		</SafeAreaView>

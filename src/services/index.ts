@@ -38,7 +38,6 @@ export const updateInstanceAuthorization = async () => {
 		instance.interceptors.request.use(async (req: any) => {
 			const token = await AsyncStorage.getItem("@app:jwt");
 			req.headers["Authorization"] = token ? `Bearer ${token}` : "";
-			console.log(req.headers);
 			return req;
 		})
 	);

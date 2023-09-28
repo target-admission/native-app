@@ -10,10 +10,10 @@ const Input: React.FC<CustomTextInputProps> = ({ className, ...props }) => {
 		<TextInput
 			{...props}
 			cursorColor={"#f00"}
-			placeholderTextColor={"#ffffff40"}
+			placeholderTextColor={"#ffffff30"}
 			style={{
 				// fontFamily: "Fredoka_400Regular",
-				backgroundColor: "#ffffff20",
+				backgroundColor: "#ffffff07",
 			}}
 			className={`text-white font-medium my-2 placeholder:text-white rounded-md p-4 px-6 text-xl w-full font-fredoka ${className}`}
 		/>

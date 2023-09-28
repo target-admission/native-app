@@ -22,6 +22,9 @@ module.exports = {
 				secondary: {
 					DEFAULT: "#7359F2",
 				},
+				background: {
+					DEFAULT: "#131417",
+				},
 			},
 		},
 	},

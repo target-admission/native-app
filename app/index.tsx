@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
 import { Text, View } from "react-native";
+import Loading from "../src/components/Loading";
 
 export default function Page() {
 	const navigation = useRouter();
@@ -25,10 +26,8 @@ export default function Page() {
 	};
 
 	return (
-		<SafeAreaView className="flex-col items-center justify-evenly h-full bg-[#000000]">
-			<View>
-				<Text className="text-black">...</Text>
-			</View>
+		<SafeAreaView className="flex-col items-center justify-evenly h-full bg-background">
+			<Loading />
 		</SafeAreaView>
 	);
 }

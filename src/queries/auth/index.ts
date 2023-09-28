@@ -26,7 +26,6 @@ export const useLogout = () => {
 // Validation function with instance
 const getValidateUser = () => {
 	updateInstanceAuthorization();
-	console.log(instance.defaults.headers);
 	return instance.get("/auth/validate");
 };
 

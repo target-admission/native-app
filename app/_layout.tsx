@@ -34,7 +34,7 @@ const queryClient = new QueryClient({
 });
 
 export default function HomeLayout() {
-	NavigationBar.setBackgroundColorAsync("black");
+	NavigationBar.setBackgroundColorAsync("#131417");
 
 	const [fontsLoaded, fontError] = useFonts({
 		"fredoka-light": Fredoka_300Light,
@@ -62,7 +62,11 @@ export default function HomeLayout() {
 
 	return (
 		<>
-			<StatusBar style="light" />
+			<StatusBar
+				animated
+				backgroundColor="#131417"
+				style="light"
+			/>
 			<QueryClientProvider client={queryClient}>
 				<Slot />
 			</QueryClientProvider>
