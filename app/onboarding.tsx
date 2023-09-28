@@ -52,7 +52,7 @@ export default function Page() {
 							children={
 								<Image
 									source={require("../assets/icons/qbank.png")}
-									className="h-[50vw] w-[50vw] max-h-60 max-w-[240px]"
+									className="h-[70vw] w-[70vw] max-h-72 max-w-[288px]"
 								/>
 							}
 							className="min-h-[35vh] flex flex-col items-center justify-center"
@@ -83,7 +83,7 @@ export default function Page() {
 							children={
 								<Image
 									source={require("../assets/icons/exam.png")}
-									className="h-[50vw] w-[50vw] max-h-60 max-w-[240px]"
+									className="h-[70vw] w-[70vw] max-h-72 max-w-[288px]"
 								/>
 							}
 							className="min-h-[35vh] flex flex-col items-center justify-center"
@@ -114,7 +114,7 @@ export default function Page() {
 							children={
 								<Image
 									source={require("../assets/icons/courses.png")}
-									className="h-[50vw] w-[50vw] max-h-60 max-w-[240px]"
+									className="h-[70vw] w-[70vw] max-h-72 max-w-[288px]"
 								/>
 							}
 							className="min-h-[35vh] flex flex-col items-center justify-center"
