@@ -8,7 +8,13 @@ module.exports = {
 	],
 	theme: {
 		extend: {
-			fontFamily: {},
+			fontFamily: {
+				fredoka: "fredoka-regular",
+				"fredoka-bold": "fredoka-bold",
+				"fredoka-medium": "fredoka-medium",
+				"fredoka-semibold": "fredoka-semibold",
+				"fredoka-light": "fredoka-light",
+			},
 			colors: {
 				primary: {
 					DEFAULT: "#ED2024",
