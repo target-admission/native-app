@@ -1,5 +1,6 @@
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { authService } from "../../../src/services/auth";
 import { useAuth } from "../../../src/services/auth/useAuth";
 import { Avatar } from "../../../src/components/Avatar";
 
@@ -8,9 +9,11 @@ import { Feather } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 
 export default function Page() {
 	const { user } = useAuth();
+	const router = useRouter();
 
 	return (
 		<SafeAreaView className="bg-background h-full">
@@ -150,6 +153,10 @@ export default function Page() {
 					<TouchableOpacity
 						activeOpacity={0.6}
 						className="my-2"
+						onPressOut={() => {
+							authService.removeToken();
+							router.replace("/public/sign");
+						}}
 					>
 						<View className="flex flex-row items-center bg-[#ffffff05] py-6 px-7 rounded-2xl justify-between">
 							<View className="mr-5">
