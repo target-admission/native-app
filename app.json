@@ -32,6 +32,14 @@
 			"backgroundColor": "#131417",
 			"translucent": false
 		},
+		"plugins": [
+			[
+				"expo-image-picker",
+				{
+					"photosPermission": "The app access your photos to let you upload your profile picture."
+				}
+			]
+		],
 		"owner": "tam11a"
 	}
 }

@@ -1,5 +1,7 @@
 import { Slot, useRouter, usePathname } from "expo-router";
 import { Text, TouchableOpacity, View } from "react-native";
+import * as NavigationBar from "expo-navigation-bar";
+
 // icons
 import { MaterialIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
@@ -48,34 +50,49 @@ function HomeLayout() {
 	const primaryColor = "#ED2024";
 	const router = useRouter();
 	const pathname = usePathname();
+	NavigationBar.setBackgroundColorAsync("#0A0A0D");
+
+	const Tab = ({ name, href, Icon }: any) => {
+		return (
+			<TouchableOpacity
+				onPressOut={() => {
+					router.push(href);
+				}}
+			>
+				<View
+					className="py-3 mt-1 mb-2 pl-3 pr-5 flex flex-row items-center justify-center rounded-full"
+					style={{
+						backgroundColor: pathname === href ? "#1B1616" : "transparent",
+					}}
+				>
+					<Icon color={pathname === href ? primaryColor : "#888"} />
+					<Text
+						className="text-primary font-fredoka-medium text-lg ml-2"
+						style={{
+							display: pathname === href ? "flex" : "none",
+						}}
+					>
+						{name}
+					</Text>
+				</View>
+			</TouchableOpacity>
+		);
+	};
 
 	return (
 		<>
-			<Slot />
-			<View className="bg-background absolute bottom-0 w-full border-t border-t-neutral-950">
+			<View className="pb-16 bg-background">
+				<Slot />
+			</View>
+			<View className="bg-[#0A0A0D] absolute bottom-0 w-full border-t border-t-neutral-950">
 				<View className="relative w-full  p-1 px-4 rounded-md flex flex-row items-center justify-evenly">
 					{Tabs?.map(({ name, href, Icon }) => (
-						<TouchableOpacity
+						<Tab
 							key={href}
-							onPressOut={() => {
-								router.push(href);
-							}}
-						>
-							<View
-								className="py-3 mt-1 mb-2 pl-3 pr-5 flex flex-row items-center justify-center rounded-full"
-								style={{
-									backgroundColor:
-										pathname === href ? primaryColor : "transparent",
-								}}
-							>
-								<Icon color={pathname === href ? "#131417" : "white"} />
-								{pathname === href && (
-									<Text className="text-background font-fredoka-medium text-lg ml-2">
-										{name}
-									</Text>
-								)}
-							</View>
-						</TouchableOpacity>
+							name={name}
+							href={href}
+							Icon={Icon}
+						/>
 					))}
 				</View>
 			</View>
