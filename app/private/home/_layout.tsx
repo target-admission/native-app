@@ -21,7 +21,19 @@ const Tabs = [
 		href: "/private/home",
 	},
 	{
-		name: "Notifications",
+		name: "Saved",
+		Icon: (props: any) => (
+			<Feather
+				name="bookmark"
+				size={24}
+				color="white"
+				{...props}
+			/>
+		),
+		href: "/private/home/saved",
+	},
+	{
+		name: "Notify",
 		Icon: (props: any) => (
 			<Ionicons
 				name="notifications"
