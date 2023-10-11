@@ -1,7 +1,8 @@
+import React from "react";
 import {
-	ActivityIndicator,
 	Image,
 	Text,
+	ToastAndroid,
 	TouchableOpacity,
 	View,
 } from "react-native";
@@ -20,18 +21,27 @@ export default function Page() {
 	const router = useRouter();
 	const { handleSubmit, control, reset } = useForm();
 
-	const { mutateAsync, isLoading, error } = useLogin();
+	const { mutateAsync, isLoading } = useLogin();
+
+	const [formError, setFormError] = React.useState<string | null>(null);
 
 	const onSubmit = async (data: any) => {
 		const res = await handleResponse(() => mutateAsync(data));
 		if (res.status) {
+			reset();
 			authService.setToken(res.data.jwt);
-			// router.replace("/private/home");
+			ToastAndroid.showWithGravity(
+				res.message,
+				ToastAndroid.SHORT,
+				ToastAndroid.BOTTOM
+			);
 		} else {
-			// Snackbar.show({
-			// 	text: res.message,
-			// 	// duration: Snackbar?.LENGTH_SHORT,
-			// });
+			setFormError(res.message);
+			ToastAndroid.showWithGravity(
+				res.message,
+				ToastAndroid.SHORT,
+				ToastAndroid.BOTTOM
+			);
 		}
 	};
 
@@ -59,14 +69,21 @@ export default function Page() {
 						rules={{
 							required: true,
 						}}
-						render={({ field: { onChange, onBlur, value } }) => (
+						render={({
+							field: { onChange, onBlur, value },
+							formState: {
+								errors: { phone: error },
+							},
+						}) => (
 							<Input
 								placeholder="Phone Number"
 								onChangeText={onChange}
 								keyboardType="phone-pad"
 								onBlur={onBlur}
 								value={value}
+								error={error || !!formError}
 								autoComplete="off"
+								blurOnSubmit
 							/>
 						)}
 					/>
@@ -78,15 +95,22 @@ export default function Page() {
 						rules={{
 							required: true,
 						}}
-						render={({ field: { onChange, onBlur, value } }) => (
+						render={({
+							field: { onChange, onBlur, value },
+							formState: {
+								errors: { password: error },
+							},
+						}) => (
 							<Input
 								placeholder="Password"
 								onChangeText={onChange}
 								secureTextEntry
 								selectTextOnFocus
+								error={error || !!formError}
 								autoComplete={"off"}
 								onBlur={onBlur}
 								value={value}
+								blurOnSubmit
 							/>
 						)}
 					/>
@@ -96,6 +120,13 @@ export default function Page() {
 						Forgot password?
 					</Text>
 				</View>
+				{!!formError && (
+					<View>
+						<Text className="text-red-700 text-base font-fredoka-semibold uppercase my-2">
+							{formError}
+						</Text>
+					</View>
+				)}
 				<TouchableOpacity
 					disabled={isLoading}
 					className="relative rounded-md w-full"

@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { authService } from "./auth.service";
-import { useGetValidation } from "../../queries/auth";
+import { useGetValidation, useLogout } from "../../queries/auth";
 import { updateInstanceAuthorization } from "..";
+import handleResponse from "../../utilites/handleResponse";
+import { ToastAndroid } from "react-native";
+import { useRouter } from "expo-router";
 
 export const useAuth = () => {
 	const [token, setToken] = useState<string | null>(null);
@@ -73,11 +76,35 @@ export const useAuth = () => {
 		setUser(validationData?.data);
 	}, [validationData]);
 
+	const { mutateAsync: logoutAsync, isLoading: isLogoutLoading } = useLogout();
+	const router = useRouter();
+
+	const logout = async () => {
+		const res = await handleResponse(() => logoutAsync());
+		if (res.status) {
+			authService.removeToken();
+			router.replace("/public/sign");
+			ToastAndroid.showWithGravity(
+				res.message,
+				ToastAndroid.SHORT,
+				ToastAndroid.BOTTOM
+			);
+		} else {
+			ToastAndroid.showWithGravity(
+				res.message,
+				ToastAndroid.SHORT,
+				ToastAndroid.BOTTOM
+			);
+		}
+	};
+
 	return {
 		isLoading: token === null || isValidationInitialLoading,
 		token,
 		user,
 		isValidationLoading,
 		isAuthenticated: !!token && !!token?.length,
+		logout,
+		isLogoutLoading,
 	};
 };
