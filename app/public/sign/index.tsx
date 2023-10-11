@@ -131,7 +131,7 @@ export default function Page() {
 					disabled={isLoading}
 					className="relative rounded-md w-full"
 					activeOpacity={0.85}
-					onPressOut={handleSubmit(onSubmit)}
+					onPress={handleSubmit(onSubmit)}
 				>
 					<Text className="bg-primary rounded-md text-xl text-center font-fredoka-semibold tracking-widest text-background px-6 py-4">
 						{isLoading ? "SIGNING..." : "SIGN IN"}
@@ -141,7 +141,7 @@ export default function Page() {
 					<TouchableOpacity
 						className="relative rounded-md w-full"
 						activeOpacity={0.85}
-						onPressOut={async () => {
+						onPress={async () => {
 							await AsyncStorage.removeItem("@app:openedBefore");
 							router.replace("/onboarding");
 						}}

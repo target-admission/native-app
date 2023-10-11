@@ -150,7 +150,7 @@ export default function Page() {
 					<TouchableOpacity
 						activeOpacity={0.6}
 						className="my-2"
-						onPressOut={() => {
+						onPress={() => {
 							logout();
 						}}
 						disabled={isLogoutLoading}

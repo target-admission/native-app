@@ -67,7 +67,7 @@ function HomeLayout() {
 	const Tab = ({ name, href, Icon }: any) => {
 		return (
 			<TouchableOpacity
-				onPressOut={() => {
+				onPress={() => {
 					router.push(href);
 				}}
 			>
