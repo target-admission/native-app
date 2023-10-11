@@ -3,16 +3,29 @@ import { Text, TouchableOpacity, View } from "react-native";
 import * as NavigationBar from "expo-navigation-bar";
 
 // icons
-import { MaterialIcons } from "@expo/vector-icons";
+import {
+	AntDesign,
+	FontAwesome5,
+	MaterialCommunityIcons,
+	MaterialIcons,
+} from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 
 const Tabs = [
 	{
-		name: "Home",
+		name: "Feed",
 		Icon: (props: any) => (
-			<MaterialIcons
-				name="explore"
+			<MaterialCommunityIcons
+				name="view-dashboard-outline"
+				size={24}
+				color="white"
+				{...props}
+			/>
+		),
+		SelectedIcon: (props: any) => (
+			<MaterialCommunityIcons
+				name="view-dashboard"
 				size={24}
 				color="white"
 				{...props}
@@ -23,7 +36,15 @@ const Tabs = [
 	{
 		name: "Saved",
 		Icon: (props: any) => (
-			<Feather
+			<MaterialCommunityIcons
+				name="bookmark-outline"
+				size={24}
+				color="white"
+				{...props}
+			/>
+		),
+		SelectedIcon: (props: any) => (
+			<MaterialCommunityIcons
 				name="bookmark"
 				size={24}
 				color="white"
@@ -35,8 +56,16 @@ const Tabs = [
 	{
 		name: "Notify",
 		Icon: (props: any) => (
-			<Ionicons
-				name="notifications"
+			<MaterialCommunityIcons
+				name="bell-outline"
+				size={24}
+				color="white"
+				{...props}
+			/>
+		),
+		SelectedIcon: (props: any) => (
+			<MaterialCommunityIcons
+				name="bell"
 				size={24}
 				color="white"
 				{...props}
@@ -45,10 +74,18 @@ const Tabs = [
 		href: "/private/home/notifications",
 	},
 	{
-		name: "Profile",
+		name: "Me",
 		Icon: (props: any) => (
-			<Feather
-				name="user"
+			<MaterialCommunityIcons
+				name="account-outline"
+				size={24}
+				color="white"
+				{...props}
+			/>
+		),
+		SelectedIcon: (props: any) => (
+			<MaterialCommunityIcons
+				name="account"
 				size={24}
 				color="white"
 				{...props}
@@ -64,7 +101,7 @@ function HomeLayout() {
 	const pathname = usePathname();
 	NavigationBar.setBackgroundColorAsync("#0A0A0D");
 
-	const Tab = ({ name, href, Icon }: any) => {
+	const Tab = ({ name, href, Icon, SelectedIcon }: any) => {
 		return (
 			<TouchableOpacity
 				onPress={() => {
@@ -72,12 +109,16 @@ function HomeLayout() {
 				}}
 			>
 				<View
-					className="py-3 mt-1 mb-2 pl-3 pr-5 flex flex-row items-center justify-center rounded-full"
+					className="py-3 mt-1 mb-2 pl-5 pr-6 flex flex-row items-center justify-center rounded-full"
 					style={{
 						backgroundColor: pathname === href ? "#1B1616" : "transparent",
 					}}
 				>
-					<Icon color={pathname === href ? primaryColor : "#888"} />
+					{pathname === href ? (
+						<SelectedIcon color={primaryColor} />
+					) : (
+						<Icon color={"#888"} />
+					)}
 					<Text
 						className="text-primary font-fredoka-medium text-lg ml-2"
 						style={{
@@ -98,12 +139,13 @@ function HomeLayout() {
 			</View>
 			<View className="bg-[#0A0A0D] absolute bottom-0 w-full border-t border-t-neutral-950">
 				<View className="relative w-full  p-1 px-4 rounded-md flex flex-row items-center justify-evenly">
-					{Tabs?.map(({ name, href, Icon }) => (
+					{Tabs?.map(({ name, href, Icon, SelectedIcon }) => (
 						<Tab
 							key={href}
 							name={name}
 							href={href}
 							Icon={Icon}
+							SelectedIcon={SelectedIcon}
 						/>
 					))}
 				</View>
