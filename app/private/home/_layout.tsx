@@ -134,7 +134,7 @@ function HomeLayout() {
 
 	return (
 		<>
-			<View className="pb-16 bg-background">
+			<View className="pb-[70px] bg-background">
 				<Slot />
 			</View>
 			<View className="bg-[#0A0A0D] absolute bottom-0 w-full border-t border-t-neutral-950">

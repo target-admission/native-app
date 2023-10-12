@@ -43,7 +43,7 @@ export default function Page() {
 							Notifications
 						</Text>
 						<Text className="font-fredoka text-gray-500 text-base">
-							5 unread notifications
+							No unread notifications
 						</Text>
 					</View>
 				</View>
@@ -61,36 +61,49 @@ export default function Page() {
 					/>
 				</TouchableOpacity>
 			</View>
-			<ScrollView
-				style={{ flex: 1 }}
-				horizontal
-				contentContainerStyle={{
-					flexDirection: "row",
-					columnGap: 10,
-					overflow: "scroll",
-					paddingLeft: 10,
-				}}
-			>
-				{filters?.map?.((item: { id: string; label: string }) => (
-					<TouchableOpacity
-						key={item.id}
-						onPress={() =>
-							setActiveFilter((a) => (a === item.id ? "" : item.id))
-						}
-						activeOpacity={0.6}
-					>
-						<Text
-							className={`text-base font-fredoka px-3 py-1 rounded-full ${
-								activeFilter === item.id
-									? "bg-primary text-background font-fredoka-semibold"
-									: "bg-gray-600 text-background font-fredoka-medium"
-							}`}
+			<View className="flex flex-col h-11">
+				<ScrollView
+					style={{ flex: 1 }}
+					horizontal
+					contentContainerStyle={{
+						columnGap: 10,
+						paddingLeft: 10,
+					}}
+				>
+					{filters?.map?.((item: { id: string; label: string }) => (
+						<TouchableOpacity
+							key={item.id}
+							onPress={() =>
+								setActiveFilter((a) => (a === item.id ? "" : item.id))
+							}
+							activeOpacity={0.6}
 						>
-							{item?.label}
-						</Text>
-					</TouchableOpacity>
-				))}
-			</ScrollView>
+							<Text
+								className={`text-base font-fredoka px-3 py-1 rounded-full ${
+									activeFilter === item.id
+										? "bg-primary text-background font-fredoka-semibold"
+										: "bg-gray-600 text-background font-fredoka-medium"
+								}`}
+							>
+								{item?.label}
+							</Text>
+						</TouchableOpacity>
+					))}
+				</ScrollView>
+			</View>
+			{/* <ScrollView
+				style={{
+					flex: 1,
+				}}
+			></ScrollView> */}
+			<View className="flex flex-col items-center justify-center h-[70vh] w-full">
+				<Text className="text-white font-fredoka-medium text-xl">
+					No notifications
+				</Text>
+				<Text className="font-fredoka text-gray-500 text-base">
+					You have no unread notifications
+				</Text>
+			</View>
 		</SafeAreaView>
 	);
 }
