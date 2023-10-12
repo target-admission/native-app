@@ -5,10 +5,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 const filters = [
 	{
-		id: "",
-		label: "All",
-	},
-	{
 		id: "news",
 		label: "News",
 	},
@@ -31,7 +27,7 @@ const filters = [
 ];
 
 export default function Page() {
-	const [activeFilter, setActiveFilter] = React.useState(filters[0].id);
+	const [activeFilter, setActiveFilter] = React.useState("");
 
 	return (
 		<SafeAreaView className="bg-background h-full">
@@ -78,9 +74,10 @@ export default function Page() {
 				{filters?.map?.((item: { id: string; label: string }) => (
 					<TouchableOpacity
 						key={item.id}
-						onPress={() => setActiveFilter(item.id)}
+						onPress={() =>
+							setActiveFilter((a) => (a === item.id ? "" : item.id))
+						}
 						activeOpacity={0.6}
-						disabled={activeFilter === item.id}
 					>
 						<Text
 							className={`text-base font-fredoka px-3 py-1 rounded-full ${
