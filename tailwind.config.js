@@ -24,6 +24,7 @@ module.exports = {
 				},
 				background: {
 					DEFAULT: "#131417",
+					dark: "#0A0A0D",
 				},
 			},
 		},
