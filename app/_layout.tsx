@@ -36,6 +36,10 @@ const queryClient = new QueryClient({
 export default function HomeLayout() {
 	NavigationBar.setBackgroundColorAsync("#131417");
 
+	useOnlineManager();
+
+	useAppState(onAppStateChange);
+
 	const [fontsLoaded, fontError] = useFonts({
 		"fredoka-light": Fredoka_300Light,
 		"fredoka-regular": Fredoka_400Regular,
@@ -44,21 +48,15 @@ export default function HomeLayout() {
 		"fredoka-bold": Fredoka_700Bold,
 	});
 
-	const callback = useCallback(async () => {
-		if (fontsLoaded || fontError) {
+	useCallback(async () => {
+		if (fontsLoaded && !fontError) {
 			await SplashScreen.hideAsync();
 		}
 	}, [fontsLoaded, fontError]);
 
-	if (!fontsLoaded && fontError) {
+	if (!fontsLoaded || fontError) {
 		return null;
 	}
-
-	callback();
-
-	useOnlineManager();
-
-	useAppState(onAppStateChange);
 
 	return (
 		<>

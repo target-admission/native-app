@@ -41,7 +41,9 @@ export default function Page() {
 					{...props}
 					className="font-fredoka-medium px-6"
 				>
-					<Text className="font-bold text-base text-primary">Done</Text>
+					<Text className="font-fredoka-medium text-base text-primary">
+						Done
+					</Text>
 				</TouchableOpacity>
 			)}
 			pages={[
