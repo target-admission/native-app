@@ -97,10 +97,15 @@ export default function Page() {
 				}}
 			></ScrollView> */}
 			<View className="flex flex-col items-center justify-center h-[70vh] w-full">
-				<Text className="text-white font-fredoka-medium text-xl">
+				<MaterialCommunityIcons
+					name="checkbox-blank-badge-outline"
+					size={70}
+					color="#6b7280"
+				/>
+				<Text className="mt-3 text-white font-fredoka-medium text-xl">
 					No notifications
 				</Text>
-				<Text className="font-fredoka text-gray-500 text-base">
+				<Text className="mt-1 font-fredoka text-gray-500 text-base">
 					You have no unread notifications
 				</Text>
 			</View>
