@@ -65,6 +65,7 @@ export default function Page() {
 				<ScrollView
 					style={{ flex: 1 }}
 					horizontal
+					showsHorizontalScrollIndicator={false}
 					contentContainerStyle={{
 						columnGap: 10,
 						paddingLeft: 10,
