@@ -46,7 +46,7 @@ export default function Page() {
 				<Text className="mt-5 text-white font-fredoka-medium text-xl">
 					No Collections
 				</Text>
-				<Text className="mt-1 font-fredoka text-gray-500 text-base">
+				<Text className="mt-1 text-center font-fredoka text-gray-500 text-base">
 					You have no collections saved
 				</Text>
 			</View>

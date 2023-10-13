@@ -118,6 +118,7 @@ function HomeLayout() {
 	const Tab = ({ name, href, Icon, SelectedIcon }: any) => {
 		return (
 			<TouchableOpacity
+				disabled={pathname === href}
 				onPress={() => {
 					router.push(href);
 				}}

@@ -106,7 +106,7 @@ export default function Page() {
 				<Text className="mt-3 text-white font-fredoka-medium text-xl">
 					No notifications
 				</Text>
-				<Text className="mt-1 font-fredoka text-gray-500 text-base">
+				<Text className="mt-1 text-center font-fredoka text-gray-500 text-base">
 					You have no unread notifications
 				</Text>
 			</View>
