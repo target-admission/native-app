@@ -9,17 +9,28 @@ export default function Page() {
 	return (
 		<SafeAreaView className="bg-background h-full">
 			<ScrollView>
-				<View className="flex flex-row items-start justify-between my-8 mx-7 bg-gradient-to-br from-primary to-secondary">
+				<View className="flex flex-row items-start justify-between my-5 mx-4 py-7 px-6 rounded-xl bg-background-dark">
+					<View className="flex flex-col">
+						<Text className="text-white font-fredoka-medium text-4xl">
+							Welcome
+						</Text>
+						<Text className="text-gray-400 font-fredoka text-xl">
+							{user.first_name} {user.last_name}
+						</Text>
+					</View>
+				</View>
+				<View>
 					<LinearGradient
 						// Background Linear Gradient
-						end={{ x: 0.1, y: 0.2 }}
-						colors={["rgba(155,0,0,0.8)", "transparent"]}
+						className="flex flex-row items-start justify-between my-5 mx-4 py-7 px-6 rounded-xl"
+						start={{ x: 0.1, y: 0.2 }}
+						colors={["#592774", "#4E30B7"]}
 					>
-						<View className="flex flex-col gap-1">
-							<Text className="text-white font-fredoka-medium text-4xl">
+						<View className="flex flex-col">
+							<Text className="text-background font-fredoka-medium text-4xl">
 								Welcome
 							</Text>
-							<Text className="text-white font-fredoka text-xl">
+							<Text className="text-background-dark font-fredoka-medium text-xl">
 								{user.first_name} {user.last_name}
 							</Text>
 						</View>

@@ -2,7 +2,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useRouter } from "expo-router";
-import { Text, View } from "react-native";
 import Loading from "../src/components/Loading";
 
 export default function Page() {

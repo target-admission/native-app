@@ -3,14 +3,7 @@ import { Text, TouchableOpacity, View } from "react-native";
 import * as NavigationBar from "expo-navigation-bar";
 
 // icons
-import {
-	AntDesign,
-	FontAwesome5,
-	MaterialCommunityIcons,
-	MaterialIcons,
-} from "@expo/vector-icons";
-import { Ionicons } from "@expo/vector-icons";
-import { Feather } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const Tabs = [
 	{
@@ -32,6 +25,26 @@ const Tabs = [
 			/>
 		),
 		href: "/private/home",
+	},
+	{
+		name: "Search",
+		Icon: (props: any) => (
+			<MaterialCommunityIcons
+				name="text-box-search-outline"
+				size={24}
+				color="white"
+				{...props}
+			/>
+		),
+		SelectedIcon: (props: any) => (
+			<MaterialCommunityIcons
+				name="text-box-search"
+				size={24}
+				color="white"
+				{...props}
+			/>
+		),
+		href: "/private/home/search",
 	},
 	{
 		name: "Saved",
@@ -99,6 +112,7 @@ function HomeLayout() {
 	const primaryColor = "#ED2024";
 	const router = useRouter();
 	const pathname = usePathname();
+
 	NavigationBar.setBackgroundColorAsync("#0A0A0D");
 
 	const Tab = ({ name, href, Icon, SelectedIcon }: any) => {
